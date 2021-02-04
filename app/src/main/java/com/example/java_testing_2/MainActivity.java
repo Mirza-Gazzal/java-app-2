@@ -22,25 +22,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ArrayList<String[]> appsList = new ArrayList<String[]>();
+        ArrayList<Drawable> appsListImages = new ArrayList<Drawable>();
 
         List<ApplicationInfo> apps = getPackageManager().getInstalledApplications(0);
         String appName = "";
         Drawable image;
         for(ApplicationInfo app : apps) {
+            image = this.getPackageManager().getDrawable(app.packageName, app.icon, app);
             appName = this.getPackageManager().getApplicationLabel(app).toString();
-            image = this.getPackageManager().getApplicationIcon(app);
+            // image = this.getPackageManager().getApplicationIcon(app);
 
             if ((app.flags & (ApplicationInfo.FLAG_UPDATED_SYSTEM_APP | ApplicationInfo.FLAG_SYSTEM)) > 0) {
                 // It is a system app
             } else {
                 // It is installed by the user
-                appsList.add(new String[] {"Our Custom Data here :", appName, String.valueOf(image)});
+
             }
 
-
-
-            Log.i("App manager", "App Name: " + appName);
-
+            appsList.add(new String[] {"Our Custom Data here :", appName});
+            appsListImages.add(image);
+            // Log.i("App manager", "App Name: " + appName);
         }
 
 
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ListView listview = (ListView) findViewById(R.id.listview);
-        listview.setAdapter(new CustomListView(this, array));
-
+        listview.setAdapter(new CustomListView(this, array, appsListImages));
     }
 }

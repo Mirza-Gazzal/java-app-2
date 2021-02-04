@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Header"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text"/>
+        android:text="Header" />-->
 
     <ImageView
+        android:id="@+id/icon"
+        android:layout_margin="5pt"
+        android:layout_width="16pt"
+        android:layout_height="16pt" />
+
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/icon"/>
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/icon"/>
+
+    <Switch
+        android:id="@+id/switch_action"
+        android:layout_width="60dp"
+        android:layout_height="17dp"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/text"
+        android:layout_weight="1" />
 
 
-</LinearLayout>
+</RelativeLayout>

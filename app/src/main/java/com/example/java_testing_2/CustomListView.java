@@ -9,16 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 class CustomListView extends BaseAdapter {
 
     Context context;
     String[][] data;
+    ArrayList<Drawable> images;
     private static LayoutInflater inflater = null;
 
-    public CustomListView(Context context, String[][] data) {
+    public CustomListView(Context context, String[][] data, ArrayList<Drawable> images) {
         // TODO Auto-generated constructor stub
         this.context = context;
         this.data = data;
+        this.images = images;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -48,14 +52,14 @@ class CustomListView extends BaseAdapter {
         if (vi == null)
             vi = inflater.inflate(R.layout.custom_list_row, null);
 
-        TextView header = (TextView) vi.findViewById(R.id.header);
+        // TextView header = (TextView) vi.findViewById(R.id.header);
         TextView text = (TextView) vi.findViewById(R.id.text);
         ImageView image = (ImageView) vi.findViewById(R.id.icon);
 
 
-        header.setText(data[position][0]);
+        //header.setText(data[position][0]);
         text.setText(data[position][1]);
-       image.setImageDrawable(Drawable.createFromPath(data[position][2]));
+        image.setImageDrawable(this.images.get(position));
         return vi;
     }
 }
